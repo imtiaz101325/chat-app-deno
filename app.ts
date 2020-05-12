@@ -3,7 +3,7 @@ import {
   ServerRequest,
 } from "https://deno.land/std/http/server.ts";
 
-listenAndServe({ port: 8080 }, async (req: ServerRequest) => {
+listenAndServe({ port: 8080 }, async (req: ServerRequest): Promise<void> => {
   if (req.method === "GET" && req.url === "/") {
     req.respond({
       status: 200,
