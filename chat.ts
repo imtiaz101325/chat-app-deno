@@ -1,8 +1,8 @@
 import {
   WebSocket,
-  isWebsocketCloseEvent,
+  isWebSocketCloseEvent,
 } from "https://deno.land/std/ws/mod.ts";
-import { v4 } from "https://deno.land/std/ws/mod.ts";
+import { v4 } from "https://deno.land/std/uuid/mod.ts";
 
 const users = new Map<string, WebSocket>();
 
@@ -28,7 +28,7 @@ export async function chat(ws: WebSocket): Promise<void> {
     broadcast(message, userId);
 
     // Unregister user connection
-    if (!message && isWebsocketCloseEvent(event)) {
+    if (!message && isWebSocketCloseEvent(event)) {
       users.delete(userId);
       broadcast(`> User with the ID ${userId} has disconnected.`);
       break;  
